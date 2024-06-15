@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		4B69CD602C1CC72100F7621F /* TestChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD5F2C1CC72100F7621F /* TestChatApp.swift */; };
-		4B69CD622C1CC72100F7621F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD612C1CC72100F7621F /* ContentView.swift */; };
 		4B69CD642C1CC72200F7621F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B69CD632C1CC72200F7621F /* Assets.xcassets */; };
 		4B69CD672C1CC72200F7621F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B69CD662C1CC72200F7621F /* Preview Assets.xcassets */; };
+		4B69CD732C1CCDC100F7621F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD722C1CCDC100F7621F /* ChatView.swift */; };
+		4B69CD762C1DCBF200F7621F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD752C1DCBF200F7621F /* LoginView.swift */; };
+		4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD772C1DD6B600F7621F /* PasswordField.swift */; };
+		4B69CD7C2C1DE57500F7621F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD7B2C1DE57500F7621F /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B69CD5C2C1CC72100F7621F /* TestChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B69CD5F2C1CC72100F7621F /* TestChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChatApp.swift; sourceTree = "<group>"; };
-		4B69CD612C1CC72100F7621F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B69CD632C1CC72200F7621F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B69CD662C1CC72200F7621F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4B69CD722C1CCDC100F7621F /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		4B69CD752C1DCBF200F7621F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4B69CD772C1DD6B600F7621F /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
+		4B69CD7B2C1DE57500F7621F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +58,11 @@
 			isa = PBXGroup;
 			children = (
 				4B69CD5F2C1CC72100F7621F /* TestChatApp.swift */,
-				4B69CD612C1CC72100F7621F /* ContentView.swift */,
+				4B69CD6F2C1CC90300F7621F /* Views */,
+				4B69CD6E2C1CC8F800F7621F /* ViewModel */,
+				4B69CD6D2C1CC8EA00F7621F /* Model */,
+				4B69CD702C1CC91100F7621F /* Components */,
+				4B69CD712C1CC91B00F7621F /* Extensions */,
 				4B69CD632C1CC72200F7621F /* Assets.xcassets */,
 				4B69CD652C1CC72200F7621F /* Preview Content */,
 			);
@@ -65,6 +75,53 @@
 				4B69CD662C1CC72200F7621F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4B69CD6D2C1CC8EA00F7621F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B69CD6E2C1CC8F800F7621F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4B69CD6F2C1CC90300F7621F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B69CD742C1DCBDD00F7621F /* LoginView */,
+				4B69CD722C1CCDC100F7621F /* ChatView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4B69CD702C1CC91100F7621F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4B69CD7B2C1DE57500F7621F /* CustomButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4B69CD712C1CC91B00F7621F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4B69CD742C1DCBDD00F7621F /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				4B69CD752C1DCBF200F7621F /* LoginView.swift */,
+				4B69CD772C1DD6B600F7621F /* PasswordField.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +194,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B69CD622C1CC72100F7621F /* ContentView.swift in Sources */,
+				4B69CD762C1DCBF200F7621F /* LoginView.swift in Sources */,
+				4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */,
+				4B69CD732C1CCDC100F7621F /* ChatView.swift in Sources */,
 				4B69CD602C1CC72100F7621F /* TestChatApp.swift in Sources */,
+				4B69CD7C2C1DE57500F7621F /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
