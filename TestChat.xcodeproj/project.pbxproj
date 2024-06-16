@@ -17,6 +17,8 @@
 		4B69CD7F2C1E012E00F7621F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CD7E2C1E012E00F7621F /* FirebaseAuth */; };
 		4B69CD812C1E012E00F7621F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CD802C1E012E00F7621F /* FirebaseStorage */; };
 		4B69CD832C1E9C4C00F7621F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B69CD822C1E9C4C00F7621F /* GoogleService-Info.plist */; };
+		4B69CD852C1EB34F00F7621F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD842C1EB34F00F7621F /* ImagePicker.swift */; };
+		4B69CD872C1EC42D00F7621F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		4B69CD772C1DD6B600F7621F /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		4B69CD7B2C1DE57500F7621F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4B69CD822C1E9C4C00F7621F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		4B69CD842C1EB34F00F7621F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +105,8 @@
 		4B69CD6F2C1CC90300F7621F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4B69CD742C1DCBDD00F7621F /* LoginView */,
 				4B69CD722C1CCDC100F7621F /* ChatView.swift */,
+				4B69CD742C1DCBDD00F7621F /* LoginView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +122,7 @@
 		4B69CD712C1CC91B00F7621F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4B69CD842C1EB34F00F7621F /* ImagePicker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				4B69CD752C1DCBF200F7621F /* LoginView.swift */,
+				4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */,
 				4B69CD772C1DD6B600F7621F /* PasswordField.swift */,
 			);
 			path = LoginView;
@@ -211,7 +217,9 @@
 			files = (
 				4B69CD762C1DCBF200F7621F /* LoginView.swift in Sources */,
 				4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */,
+				4B69CD872C1EC42D00F7621F /* FirebaseManager.swift in Sources */,
 				4B69CD732C1CCDC100F7621F /* ChatView.swift in Sources */,
+				4B69CD852C1EB34F00F7621F /* ImagePicker.swift in Sources */,
 				4B69CD602C1CC72100F7621F /* TestChatApp.swift in Sources */,
 				4B69CD7C2C1DE57500F7621F /* CustomButton.swift in Sources */,
 			);

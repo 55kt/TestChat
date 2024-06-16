@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
 
 struct LoginView: View {
     
@@ -14,11 +15,11 @@ struct LoginView: View {
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
+    @State var image: UIImage?
+    @State var shouldShowImagePicker = false
     
-    //MARK: - Initializer
-    init() {
-        FirebaseApp.configure()
-    }
+    @ObservedObject var firebaseManager = FirebaseManager.shared
+    
     
     //MARK: - Body
     var body: some View {
@@ -38,10 +39,28 @@ struct LoginView: View {
                     // Icon Add Button
                     if !isLoginMode {
                         Button {
-                            //
+                            shouldShowImagePicker.toggle()
                         } label: {
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 64))
+                            
+                            VStack {
+                                if let image = self.image {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 128, height: 128)
+                                        .scaledToFill()
+                                        .cornerRadius(64)
+                                } else {
+                                    Image(systemName: "person.fill")
+                                        .foregroundStyle(.gray)
+                                        .font(.system(size: 64))
+                                        .padding()
+                                }
+                            }
+                            .overlay(RoundedRectangle(cornerRadius: 64)
+                                .stroke(.gray, lineWidth: 1)
+                                .opacity(0.5)
+                            )
+                            
                         }
                     }
                     
@@ -62,7 +81,7 @@ struct LoginView: View {
                     CustomButton(buttonTitle: isLoginMode ? "Log In" : "Create Account") {
                         handleAction()
                     }
-                    Text(self.loginStatusMessage)
+                    Text(self.firebaseManager.loginStatusMessage)
                         .foregroundStyle(.red)
                 }
                 .padding()
@@ -73,55 +92,26 @@ struct LoginView: View {
                 .blur(radius: 3)
                 .ignoresSafeArea())
         }
+        .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil, content: {
+            ImagePicker(image: $image)
+        })
     }
     
     //MARK: - Methods
     
+    
+    
     // Auth Function
     private func handleAction() {
         if isLoginMode {
-            print("is login action ")
-            loginUser()
+            firebaseManager.loginUser(email: email, password: password)
         } else {
-            createNewAccount()
+            firebaseManager.createNewAccount(email: email, password: password, image: image)
         }
     }
-    
-    // Status Message
-    @State var loginStatusMessage = ""
-    
-    // Log In Function
-    private func loginUser() {
-        Auth.auth().signIn(withEmail: email, password: password) {
-            result, err in
-            if let err = err {
-                print("Failed to login user", err)
-                self.loginStatusMessage = "Failed to login user \(err)"
-                return
-            }
-            print("Successfully Logged In as user: \(result?.user.uid ?? "")") // Console Preview
-            
-            self.loginStatusMessage = "Successfully Logged In as user: \(result?.user.uid ?? "")"
-        }
-    }
+}
         
-    // Register Function
-    private func createNewAccount() {
-        Auth.auth().createUser(withEmail: email, password: password) {
-            result, err in
-            if let err = err {
-                print("Failed to create a user", err)
-                self.loginStatusMessage = "Failed to create user \(err)"
-                return
-            }
-            print("Successfully created user: \(result?.user.uid ?? "")") // Console Preview
-            
-            self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
+        //MARK: - Preview
+        #Preview {
+            LoginView()
         }
-    }
-}
-
-//MARK: - Preview
-#Preview {
-    LoginView()
-}
