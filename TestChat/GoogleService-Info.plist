@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyA6DUj2IkjcvhPsS-tLjQEy5MOimTa-wS0</string>
+	<string>AIzaSyBoZTTLoN9w9ep2T3Y8T8LYQsoPKRvaUnA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>435401771758</string>
+	<string>785880496470</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>master.TestChat</string>
 	<key>PROJECT_ID</key>
-	<string>swift-ui-fb-chat</string>
+	<string>testchat-bd5bb</string>
 	<key>STORAGE_BUCKET</key>
-	<string>swift-ui-fb-chat.appspot.com</string>
+	<string>testchat-bd5bb.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:435401771758:ios:dd0241767ee646d22f01ff</string>
+	<string>1:785880496470:ios:93db9dbd8544cd4ce5fef7</string>
 </dict>
 </plist>
