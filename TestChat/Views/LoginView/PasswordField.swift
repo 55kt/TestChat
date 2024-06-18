@@ -35,4 +35,5 @@ struct PasswordField: View {
 #Preview {
     PasswordField(password: .constant(""))
         .padding(.horizontal, 20)
+        .preferredColorScheme(.dark)
 }
