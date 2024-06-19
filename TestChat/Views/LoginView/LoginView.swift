@@ -46,12 +46,12 @@ struct LoginView: View {
                     
                     // Fields Area
                     Group {
-                        TextField("Email", text: $fbm.email)
+                        TextField("Email", text: $fbm.user.email)
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
-                        PasswordField(password: $fbm.password)
+                        PasswordField(password: $fbm.user.password)
                         if !fbm.isLoginMode {
-                            TextField("Nickname", text: $fbm.nickname)
+                            TextField("Nickname", text: $fbm.user.nickname)
                         }
                     }
                     .padding(12)

@@ -11,10 +11,9 @@ class FirebaseManager: NSObject, ObservableObject {
     let storage: Storage
     let firestore: Firestore
     
+    var user: User
+    
     @Published var isLoginMode = false
-    @Published var email = ""
-    @Published var password = ""
-    @Published var nickname = ""
     @Published var shouldShowImagePicker = false
     @Published var image: UIImage?
     @Published var loginStatusMessage = ""
@@ -29,6 +28,7 @@ class FirebaseManager: NSObject, ObservableObject {
         self.auth = Auth.auth()
         self.storage = Storage.storage()
         self.firestore = Firestore.firestore()
+        self.user = User.init(email: "", password: "", nickname: "")
         
         super.init()
     }
@@ -37,7 +37,7 @@ class FirebaseManager: NSObject, ObservableObject {
     
     // Login Function
     func loginUser() {
-        FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, err in
+        FirebaseManager.shared.auth.signIn(withEmail: user.email, password: user.password) { result, err in
             if let err = err {
                 print("Failed to login user:", err)
                 self.loginStatusMessage = "Failed to login user: \(err)"
@@ -51,7 +51,7 @@ class FirebaseManager: NSObject, ObservableObject {
     
     // Register Function
     func createNewAccount() {
-        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, err in
+        FirebaseManager.shared.auth.createUser(withEmail: user.email, password: user.password) { result, err in
             if let err = err {
                 print("Failed to create user:", err)
                 self.loginStatusMessage = "Failed to create user: \(err)"
@@ -93,7 +93,7 @@ class FirebaseManager: NSObject, ObservableObject {
             return
         }
         print("Storing user information for user: \(uid)")
-        let userData = ["email": self.email,"nickname": nickname,"password": password, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
+        let userData = ["email": user.email,"nickname": user.nickname,"password": user.password, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
         FirebaseManager.shared.firestore.collection("users").document(uid).setData(userData) { err in
             if let err = err {
                 print("Failed to store user information:", err)
