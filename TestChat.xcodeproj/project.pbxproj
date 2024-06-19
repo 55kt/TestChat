@@ -21,6 +21,8 @@
 		4B69CDAA2C209EB800F7621F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CDA92C209EB800F7621F /* FirebaseFirestore */; };
 		4B69CDAC2C209EB800F7621F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CDAB2C209EB800F7621F /* FirebaseStorage */; };
 		4B69CDAF2C21DD3400F7621F /* MainMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDAE2C21DD3400F7621F /* MainMessageView.swift */; };
+		4B69CDB12C231F9E00F7621F /* MessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDB02C231F9E00F7621F /* MessageButton.swift */; };
+		4B69CDB32C23210400F7621F /* MessageNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDB22C23210400F7621F /* MessageNavBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		4B69CDA42C209E6800F7621F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B69CDAE2C21DD3400F7621F /* MainMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessageView.swift; sourceTree = "<group>"; };
+		4B69CDB02C231F9E00F7621F /* MessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButton.swift; sourceTree = "<group>"; };
+		4B69CDB22C23210400F7621F /* MessageNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNavBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				4B69CDAE2C21DD3400F7621F /* MainMessageView.swift */,
+				4B69CDB02C231F9E00F7621F /* MessageButton.swift */,
+				4B69CDB22C23210400F7621F /* MessageNavBar.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -232,11 +238,13 @@
 				4B69CD762C1DCBF200F7621F /* LoginView.swift in Sources */,
 				4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */,
 				4B69CD872C1EC42D00F7621F /* FirebaseManager.swift in Sources */,
+				4B69CDB32C23210400F7621F /* MessageNavBar.swift in Sources */,
 				4B69CD732C1CCDC100F7621F /* ChatView.swift in Sources */,
 				4B69CD852C1EB34F00F7621F /* ImagePicker.swift in Sources */,
 				4B69CDAF2C21DD3400F7621F /* MainMessageView.swift in Sources */,
 				4B69CD602C1CC72100F7621F /* TestChatApp.swift in Sources */,
 				4B69CD7C2C1DE57500F7621F /* CustomButton.swift in Sources */,
+				4B69CDB12C231F9E00F7621F /* MessageButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
