@@ -50,6 +50,9 @@ struct LoginView: View {
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
                         PasswordField(password: $fbm.password)
+                        if !fbm.isLoginMode {
+                            TextField("Nickname", text: $fbm.nickname)
+                        }
                     }
                     .padding(12)
                     .background(Color.white)

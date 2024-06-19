@@ -57,5 +57,5 @@ struct MainMessageView: View {
 //MARK: - Preview
 #Preview {
     MainMessageView()
-        .preferredColorScheme(.dark)
+//        .preferredColorScheme(.dark)
 }

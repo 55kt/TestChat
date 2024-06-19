@@ -14,9 +14,11 @@ class FirebaseManager: NSObject, ObservableObject {
     @Published var isLoginMode = false
     @Published var email = ""
     @Published var password = ""
+    @Published var nickname = ""
     @Published var shouldShowImagePicker = false
     @Published var image: UIImage?
     @Published var loginStatusMessage = ""
+    @Published var currentUser: User?
     
     static let shared = FirebaseManager()
     
@@ -43,6 +45,7 @@ class FirebaseManager: NSObject, ObservableObject {
             }
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
+            self.fetchUser(uid: result?.user.uid)
         }
     }
     
@@ -90,7 +93,7 @@ class FirebaseManager: NSObject, ObservableObject {
             return
         }
         print("Storing user information for user: \(uid)")
-        let userData = ["email": self.email, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
+        let userData = ["email": self.email,"nickname": nickname,"password": password, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
         FirebaseManager.shared.firestore.collection("users").document(uid).setData(userData) { err in
             if let err = err {
                 print("Failed to store user information:", err)
@@ -99,6 +102,25 @@ class FirebaseManager: NSObject, ObservableObject {
             }
             print("Successfully stored user information")
             self.loginStatusMessage = "Successfully stored user information"
+        }
+    }
+    
+    // Fetching User Data from Firestore Database
+    func fetchUser(uid: String?) {
+        guard let uid = uid else { return }
+        let docRef = firestore.collection("users").document(uid)
+        docRef.getDocument { document, error in
+            if let error = error {
+                print("Failed to fetch user: ", error)
+                self.loginStatusMessage = "Failed to fetch user: \(error)"
+                return
+            }
+            do {
+                self.currentUser = try document?.data(as: User.self)
+            } catch let error {
+                print("Failed to decode user: ", error)
+                self.loginStatusMessage = "Failed to decode user: \(error)"
+            }
         }
     }
 }

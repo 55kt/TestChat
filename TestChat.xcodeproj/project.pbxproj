@@ -23,6 +23,8 @@
 		4B69CDAF2C21DD3400F7621F /* MainMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDAE2C21DD3400F7621F /* MainMessageView.swift */; };
 		4B69CDB12C231F9E00F7621F /* MessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDB02C231F9E00F7621F /* MessageButton.swift */; };
 		4B69CDB32C23210400F7621F /* MessageNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDB22C23210400F7621F /* MessageNavBar.swift */; };
+		4B69CDB52C232E8A00F7621F /* MainMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDB42C232E8A00F7621F /* MainMessageViewModel.swift */; };
+		4B69CDB72C232F0B00F7621F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CDB62C232F0B00F7621F /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		4B69CDAE2C21DD3400F7621F /* MainMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessageView.swift; sourceTree = "<group>"; };
 		4B69CDB02C231F9E00F7621F /* MessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButton.swift; sourceTree = "<group>"; };
 		4B69CDB22C23210400F7621F /* MessageNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNavBar.swift; sourceTree = "<group>"; };
+		4B69CDB42C232E8A00F7621F /* MainMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessageViewModel.swift; sourceTree = "<group>"; };
+		4B69CDB62C232F0B00F7621F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		4B69CD6D2C1CC8EA00F7621F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4B69CDB62C232F0B00F7621F /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 		4B69CD6E2C1CC8F800F7621F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4B69CDB42C232E8A00F7621F /* MainMessageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 				4B69CD762C1DCBF200F7621F /* LoginView.swift in Sources */,
 				4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */,
 				4B69CD872C1EC42D00F7621F /* FirebaseManager.swift in Sources */,
+				4B69CDB72C232F0B00F7621F /* Model.swift in Sources */,
 				4B69CDB32C23210400F7621F /* MessageNavBar.swift in Sources */,
 				4B69CD732C1CCDC100F7621F /* ChatView.swift in Sources */,
 				4B69CD852C1EB34F00F7621F /* ImagePicker.swift in Sources */,
@@ -245,6 +252,7 @@
 				4B69CD602C1CC72100F7621F /* TestChatApp.swift in Sources */,
 				4B69CD7C2C1DE57500F7621F /* CustomButton.swift in Sources */,
 				4B69CDB12C231F9E00F7621F /* MessageButton.swift in Sources */,
+				4B69CDB52C232E8A00F7621F /* MainMessageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
