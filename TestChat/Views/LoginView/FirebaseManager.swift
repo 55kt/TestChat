@@ -28,6 +28,7 @@ class FirebaseManager: NSObject, ObservableObject {
         self.auth = Auth.auth()
         self.storage = Storage.storage()
         self.firestore = Firestore.firestore()
+        
         self.user = User.init(email: "", password: "", nickname: "")
         
         super.init()
@@ -36,8 +37,8 @@ class FirebaseManager: NSObject, ObservableObject {
     //MARK: - Methods
     
     // Login Function
-    func loginUser() {
-        FirebaseManager.shared.auth.signIn(withEmail: user.email, password: user.password) { result, err in
+    func loginUser(email: String, password: String) {
+        auth.signIn(withEmail: email, password: password) { result, err in
             if let err = err {
                 print("Failed to login user:", err)
                 self.loginStatusMessage = "Failed to login user: \(err)"
@@ -50,8 +51,8 @@ class FirebaseManager: NSObject, ObservableObject {
     }
     
     // Register Function
-    func createNewAccount() {
-        FirebaseManager.shared.auth.createUser(withEmail: user.email, password: user.password) { result, err in
+    func createNewAccount(user: User, image: UIImage?) {
+        auth.createUser(withEmail: user.email, password: user.password) { result, err in
             if let err = err {
                 print("Failed to create user:", err)
                 self.loginStatusMessage = "Failed to create user: \(err)"
@@ -59,15 +60,15 @@ class FirebaseManager: NSObject, ObservableObject {
             }
             print("Successfully created user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
-            self.persistImageToStorage()
+            self.persistImageToStorage(user: user, image: image)
         }
     }
     
     // Image Saving in Firebase Storage
-    func persistImageToStorage() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
-        guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
+    func persistImageToStorage(user: User, image: UIImage?) {
+        guard let uid = auth.currentUser?.uid else { return }
+        let ref = storage.reference(withPath: uid)
+        guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
         ref.putData(imageData, metadata: nil) { metadata, err in
             if let err = err {
                 self.loginStatusMessage = "Failed to push image to Storage: \(err)"
@@ -81,20 +82,20 @@ class FirebaseManager: NSObject, ObservableObject {
                 self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
                 print(url?.absoluteString)
                 guard let url = url else { return }
-                self.storeUserInformation(imageProfileUrl: url)
+                self.storeUserInformation(user: user, imageProfileUrl: url)
             }
         }
     }
     
     // Saving User Data Collection in Firestore Database
-    func storeUserInformation(imageProfileUrl: URL) {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+    func storeUserInformation(user: User, imageProfileUrl: URL) {
+        guard let uid = auth.currentUser?.uid else {
             print("Failed to get current user uid")
             return
         }
         print("Storing user information for user: \(uid)")
-        let userData = ["email": user.email,"nickname": user.nickname,"password": user.password, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
-        FirebaseManager.shared.firestore.collection("users").document(uid).setData(userData) { err in
+        let userData: [String: Any] = ["email": user.email,"nickname": user.nickname,"password": user.password, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
+        firestore.collection("users").document(uid).setData(userData) { err in
             if let err = err {
                 print("Failed to store user information:", err)
                 self.loginStatusMessage = "Failed to store user information: \(err)"

@@ -14,13 +14,13 @@ struct User: Identifiable, Codable {
     var email: String
     var password: String
     var nickname: String
-    var avatar: String?
     
-    init(id: String? = nil, email: String, password: String, nickname: String, avatar: String? = nil) {
+    init(id: String? = nil, email: String, password: String, nickname: String) {
         self.id = id
         self.email = email
         self.password = password
         self.nickname = nickname
-        self.avatar = avatar
     }
 }
+
+

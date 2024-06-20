@@ -82,9 +82,10 @@ struct LoginView: View {
     // Auth Function
     func handleAction() {
         if fbm.isLoginMode {
-            fbm.loginUser()
+            fbm.loginUser(email: fbm.user.email, password: fbm.user.password)
         } else {
-            fbm.createNewAccount()
+            let user = User(email: fbm.user.email, password: fbm.user.password, nickname: fbm.user.nickname)
+            fbm.createNewAccount(user: user, image: fbm.image)
         }
     }
 }
