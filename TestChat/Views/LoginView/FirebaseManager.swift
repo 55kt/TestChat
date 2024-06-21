@@ -7,6 +7,7 @@ import FirebaseFirestore
 //MARK: - Firebase Manager Properties
 class FirebaseManager: NSObject, ObservableObject {
     
+    //MARK: - Properties
     let auth: Auth
     let storage: Storage
     let firestore: Firestore
@@ -46,7 +47,7 @@ class FirebaseManager: NSObject, ObservableObject {
             }
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
-            self.fetchUser(uid: result?.user.uid)
+//            self.fetchUser(uid: result?.user.uid)
         }
     }
     
@@ -103,25 +104,6 @@ class FirebaseManager: NSObject, ObservableObject {
             }
             print("Successfully stored user information")
             self.loginStatusMessage = "Successfully stored user information"
-        }
-    }
-    
-    // Fetching User Data from Firestore Database
-    func fetchUser(uid: String?) {
-        guard let uid = uid else { return }
-        let docRef = firestore.collection("users").document(uid)
-        docRef.getDocument { document, error in
-            if let error = error {
-                print("Failed to fetch user: ", error)
-                self.loginStatusMessage = "Failed to fetch user: \(error)"
-                return
-            }
-            do {
-                self.currentUser = try document?.data(as: User.self)
-            } catch let error {
-                print("Failed to decode user: ", error)
-                self.loginStatusMessage = "Failed to decode user: \(error)"
-            }
         }
     }
 }

@@ -6,22 +6,34 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MessageNavBar: View {
     
     //MARK: - Properties
+    @EnvironmentObject var vm: MainMessageViewModel
     @State var logOutOption = false
+    
     
     //MARK: - Body
     var body: some View {
         HStack(spacing: 16) {
+            
             // User image
-            Image(systemName: "person.fill")
-                .font(.system(size: 34, weight: .heavy))
+            WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? "person.fill"))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .clipped()
+                .cornerRadius(60)
+                .overlay(RoundedRectangle(cornerRadius: 60)
+                    .stroke(.gray.opacity(0.5))
+                )
+                .shadow(radius: 5)
             
             // Username
             VStack(alignment: .leading, spacing: 4) {
-                Text("USERNAME")
+                Text(vm.chatUser?.nickname ?? "")
                     .font(.system(size: 24, weight: .bold))
                 HStack {
                     // Online status
@@ -62,4 +74,5 @@ struct MessageNavBar: View {
 //MARK: - Preview
 #Preview {
     MessageNavBar()
+        .environmentObject(MainMessageViewModel())
 }

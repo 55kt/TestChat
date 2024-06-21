@@ -9,10 +9,15 @@ import SwiftUI
 
 struct MainMessageView: View {
     
+    //MARK: - Properties
+    @EnvironmentObject var vm: MainMessageViewModel
+    
     //MARK: - Body
     var body: some View {
         NavigationView {
             VStack {
+                Text("Current user id: \(vm.errorMessage)")
+                    .padding()
                 // Nav Bar
                 MessageNavBar()
                 
@@ -57,5 +62,5 @@ struct MainMessageView: View {
 //MARK: - Preview
 #Preview {
     MainMessageView()
-//        .preferredColorScheme(.dark)
+        .environmentObject(MainMessageViewModel())
 }
