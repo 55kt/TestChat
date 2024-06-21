@@ -64,9 +64,13 @@ struct MessageNavBar: View {
                     Text("What do you want to do ?"), buttons: [
                         .destructive(Text("Sign Out"), action: {
                             print("handle sign out")
+                            vm.handleSignOut()
                         }),
                         .cancel()
                     ])
+        }
+        .fullScreenCover(isPresented: $vm.userLoggedIn, onDismiss: nil) {
+            LoginView()
         }
     }
 }

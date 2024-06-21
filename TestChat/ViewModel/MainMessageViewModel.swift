@@ -16,10 +16,15 @@ class MainMessageViewModel: ObservableObject {
     //MARK: - Properties
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
+    @Published var userLoggedIn = false
     
     //MARK: - Initializer
     init() {
         fetchCurrentUser()
+        
+        DispatchQueue.main.async {
+            self.userLoggedIn = FirebaseManager.shared.auth.currentUser?.uid == nil
+        }
     }
     
     // Fetch user data function
@@ -47,6 +52,11 @@ class MainMessageViewModel: ObservableObject {
                 let nickname = data["nickname"] as? String ?? ""
                 self.chatUser = ChatUser(uid: uid, email: email, nickname: nickname, profileImageUrl: profileImageIUrl)
             }
+    }
+    
+    func handleSignOut() {
+        userLoggedIn.toggle()
+        try? FirebaseManager.shared.auth.signOut()
     }
 }
 

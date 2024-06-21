@@ -14,6 +14,8 @@ class FirebaseManager: NSObject, ObservableObject {
     
     var user: User
     
+//    let didCompletedLoginProcess: () -> ()
+    
     @Published var isLoginMode = false
     @Published var shouldShowImagePicker = false
     @Published var image: UIImage?
@@ -47,7 +49,7 @@ class FirebaseManager: NSObject, ObservableObject {
             }
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
-//            self.fetchUser(uid: result?.user.uid)
+//            self.didCompletedLoginProcess()
         }
     }
     

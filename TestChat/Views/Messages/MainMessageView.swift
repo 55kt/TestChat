@@ -16,8 +16,6 @@ struct MainMessageView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Current user id: \(vm.errorMessage)")
-                    .padding()
                 // Nav Bar
                 MessageNavBar()
                 
