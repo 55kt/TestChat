@@ -1,20 +1,39 @@
+//
+//  LoginViewModel.swift
+//  TestChat
+//
+//  Created by Vlad on 22/6/24.
+//
+
 import SwiftUI
-import Firebase
-import FirebaseStorage
 import FirebaseAuth
+import FirebaseStorage
 import FirebaseFirestore
 
-//MARK: - Firebase Manager Properties
-class FirebaseManager: NSObject, ObservableObject {
+class LoginViewModel: ObservableObject {
     
-    //MARK: - Properties
-    let auth: Auth
-    let storage: Storage
-    let firestore: Firestore
+    @Published var email = ""
+    @Published var password = ""
+    @Published var nickname = ""
+    @Published var image: UIImage?
+    @Published var isLoginMode = true
+    @Published var loginStatusMessage = ""
+    
+    private var firebaseManager = FirebaseManager.shared
+    
+    init(fbm: FirebaseManager, user: User, isLoginMode: Bool = false, shouldShowImagePicker: Bool = false, image: UIImage? = nil, loginStatusMessage: String = "", currentUser: User? = nil) {
+        self.fbm = fbm
+        self.user = user
+        self.isLoginMode = isLoginMode
+        self.shouldShowImagePicker = shouldShowImagePicker
+        self.image = image
+        self.loginStatusMessage = loginStatusMessage
+        self.currentUser = currentUser
+    }
+    
+    
     
     var user: User
-    
-//    let didCompletedLoginProcess: () -> ()
     
     @Published var isLoginMode = false
     @Published var shouldShowImagePicker = false
@@ -23,21 +42,6 @@ class FirebaseManager: NSObject, ObservableObject {
     @Published var currentUser: User?
     
     static let shared = FirebaseManager()
-    
-    //MARK: - Initializer
-    override init() {
-        FirebaseApp.configure()
-        
-        self.auth = Auth.auth()
-        self.storage = Storage.storage()
-        self.firestore = Firestore.firestore()
-        
-        self.user = User.init(email: "", password: "", nickname: "")
-        
-        super.init()
-    }
-    
-    //MARK: - Methods
     
     // Login Function
     func loginUser(email: String, password: String) {
@@ -89,23 +93,8 @@ class FirebaseManager: NSObject, ObservableObject {
             }
         }
     }
-    
-    // Saving User Data Collection in Firestore Database
-    func storeUserInformation(user: User, imageProfileUrl: URL) {
-        guard let uid = auth.currentUser?.uid else {
-            print("Failed to get current user uid")
-            return
-        }
-        print("Storing user information for user: \(uid)")
-        let userData: [String: Any] = ["email": user.email,"nickname": user.nickname,"password": user.password, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
-        firestore.collection("users").document(uid).setData(userData) { err in
-            if let err = err {
-                print("Failed to store user information:", err)
-                self.loginStatusMessage = "Failed to store user information: \(err)"
-                return
-            }
-            print("Successfully stored user information")
-            self.loginStatusMessage = "Successfully stored user information"
-        }
-    }
+}
+
+#Preview {
+    LoginViewModel()
 }

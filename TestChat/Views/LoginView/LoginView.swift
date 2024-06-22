@@ -3,7 +3,7 @@ import SwiftUI
 struct LoginView: View {
     
     //MARK: - Properties
-    @StateObject private var fbm = FirebaseManager.shared
+    @EnvironmentObject private var fbm = FirebaseManager
     
     //MARK: - Body
     var body: some View {

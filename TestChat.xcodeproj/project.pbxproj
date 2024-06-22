@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B6610BE2C25CEEE007B30F8 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6610BD2C25CEEE007B30F8 /* SDWebImageSwiftUI */; };
+		4B6610C02C25F21C007B30F8 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6610BF2C25F21C007B30F8 /* FirebaseManager.swift */; };
+		4B6610C22C271BE5007B30F8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6610C12C271BE5007B30F8 /* LoginViewModel.swift */; };
 		4B69CD602C1CC72100F7621F /* TestChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD5F2C1CC72100F7621F /* TestChatApp.swift */; };
 		4B69CD642C1CC72200F7621F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B69CD632C1CC72200F7621F /* Assets.xcassets */; };
 		4B69CD672C1CC72200F7621F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B69CD662C1CC72200F7621F /* Preview Assets.xcassets */; };
@@ -16,7 +18,6 @@
 		4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD772C1DD6B600F7621F /* PasswordField.swift */; };
 		4B69CD7C2C1DE57500F7621F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD7B2C1DE57500F7621F /* CustomButton.swift */; };
 		4B69CD852C1EB34F00F7621F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD842C1EB34F00F7621F /* ImagePicker.swift */; };
-		4B69CD872C1EC42D00F7621F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */; };
 		4B69CDA52C209E6800F7621F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B69CDA42C209E6800F7621F /* GoogleService-Info.plist */; };
 		4B69CDA82C209EB800F7621F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CDA72C209EB800F7621F /* FirebaseAuth */; };
 		4B69CDAA2C209EB800F7621F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CDA92C209EB800F7621F /* FirebaseFirestore */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B6610BF2C25F21C007B30F8 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		4B6610C12C271BE5007B30F8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4B69CD5C2C1CC72100F7621F /* TestChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B69CD5F2C1CC72100F7621F /* TestChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChatApp.swift; sourceTree = "<group>"; };
 		4B69CD632C1CC72200F7621F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,7 +41,6 @@
 		4B69CD772C1DD6B600F7621F /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		4B69CD7B2C1DE57500F7621F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4B69CD842C1EB34F00F7621F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		4B69CDA42C209E6800F7621F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B69CDAE2C21DD3400F7621F /* MainMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessageView.swift; sourceTree = "<group>"; };
 		4B69CDB02C231F9E00F7621F /* MessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButton.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				4B69CDB42C232E8A00F7621F /* MainMessageViewModel.swift */,
+				4B6610C12C271BE5007B30F8 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				4B69CD842C1EB34F00F7621F /* ImagePicker.swift */,
+				4B6610BF2C25F21C007B30F8 /* FirebaseManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -148,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				4B69CD752C1DCBF200F7621F /* LoginView.swift */,
-				4B69CD862C1EC42D00F7621F /* FirebaseManager.swift */,
 				4B69CD772C1DD6B600F7621F /* PasswordField.swift */,
 			);
 			path = LoginView;
@@ -245,11 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6610C02C25F21C007B30F8 /* FirebaseManager.swift in Sources */,
 				4B69CD762C1DCBF200F7621F /* LoginView.swift in Sources */,
 				4B69CD782C1DD6B600F7621F /* PasswordField.swift in Sources */,
-				4B69CD872C1EC42D00F7621F /* FirebaseManager.swift in Sources */,
 				4B69CDB72C232F0B00F7621F /* Model.swift in Sources */,
 				4B69CDB32C23210400F7621F /* MessageNavBar.swift in Sources */,
+				4B6610C22C271BE5007B30F8 /* LoginViewModel.swift in Sources */,
 				4B69CD732C1CCDC100F7621F /* ChatView.swift in Sources */,
 				4B69CD852C1EB34F00F7621F /* ImagePicker.swift in Sources */,
 				4B69CDAF2C21DD3400F7621F /* MainMessageView.swift in Sources */,
