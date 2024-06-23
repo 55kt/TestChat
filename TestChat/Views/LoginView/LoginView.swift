@@ -29,7 +29,7 @@ struct LoginView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     
                     // Icon Add Button Area
-                    if isLoginMode {
+                    if !isLoginMode {
                         Button {
                             shouldShowImagePicker.toggle()
                         } label: {
@@ -60,9 +60,9 @@ struct LoginView: View {
                         TextField("Email", text: $email)
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
-                        PasswordField(password: password)
-                        if isLoginMode {
-                            TextField("Nickname", text: nickname)
+                        PasswordField(password: $password)
+                        if !isLoginMode {
+                            TextField("Nickname", text: $nickname)
                         }
                     }
                     .padding(12)
@@ -158,7 +158,7 @@ struct LoginView: View {
         }
     }
     
-    // Collect user Data information in FirebaseFirestore 
+    // Collect user Data information in FirebaseFirestore
     private func storeUserInformation(imageProfileUrl: URL) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let userData = ["email": self.email, "uid": uid, "nickname": nickname, "profileImageUrl": imageProfileUrl.absoluteString]
