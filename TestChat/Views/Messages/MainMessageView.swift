@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MainMessageView: View {
     
-    //MARK: - Properties
-    @EnvironmentObject var vm: MainMessageViewModel
     
     //MARK: - Body
     var body: some View {
@@ -60,5 +58,4 @@ struct MainMessageView: View {
 //MARK: - Preview
 #Preview {
     MainMessageView()
-        .environmentObject(MainMessageViewModel())
 }

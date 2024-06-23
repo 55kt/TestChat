@@ -11,8 +11,8 @@ import SDWebImageSwiftUI
 struct MessageNavBar: View {
     
     //MARK: - Properties
-    @EnvironmentObject var vm: MainMessageViewModel
-    @State var logOutOption = false
+    @EnvironmentObject var mmvm: MainMessagesViewModel
+    @State var shouldShowLogOutOptions = false
     
     
     //MARK: - Body
@@ -20,7 +20,7 @@ struct MessageNavBar: View {
         HStack(spacing: 16) {
             
             // User image
-            WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? "person.fill"))
+            WebImage(url: URL(string: mmvm.chatUser?.profileImageUrl ?? "person.fill"))
                 .resizable()
                 .scaledToFill()
                 .frame(width: 60, height: 60)
@@ -33,7 +33,7 @@ struct MessageNavBar: View {
             
             // Username
             VStack(alignment: .leading, spacing: 4) {
-                Text(vm.chatUser?.nickname ?? "")
+                Text(mmvm.chatUser?.nickname ?? "")
                     .font(.system(size: 24, weight: .bold))
                 HStack {
                     // Online status
@@ -49,7 +49,7 @@ struct MessageNavBar: View {
             // Log out nav bar button image
             Spacer()
             Button {
-                logOutOption.toggle()
+                shouldShowLogOutOptions.toggle()
             } label: {
                 Image(systemName: "gear")
                     .font(.system(size: 30, weight: .bold))
@@ -59,18 +59,21 @@ struct MessageNavBar: View {
         .padding()
         
         // Log out banner functionality
-        .actionSheet(isPresented: $logOutOption) {
+        .actionSheet(isPresented: $shouldShowLogOutOptions) {
             .init(title: Text("Settings"), message:
                     Text("What do you want to do ?"), buttons: [
                         .destructive(Text("Sign Out"), action: {
                             print("handle sign out")
-                            vm.handleSignOut()
+                            mmvm.handleSignOut()
                         }),
                         .cancel()
                     ])
         }
-        .fullScreenCover(isPresented: $vm.userLoggedIn, onDismiss: nil) {
-            LoginView()
+        .fullScreenCover(isPresented: $mmvm.isUserCurrentlyLoggedOut, onDismiss: nil) {
+            LoginView(didCompleteLoginProcess: {
+                self.mmvm.isUserCurrentlyLoggedOut = false
+                self.mmvm.fetchCurrentUser()
+            })
         }
     }
 }
@@ -78,5 +81,4 @@ struct MessageNavBar: View {
 //MARK: - Preview
 #Preview {
     MessageNavBar()
-        .environmentObject(MainMessageViewModel())
 }
