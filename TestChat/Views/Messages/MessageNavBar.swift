@@ -18,7 +18,6 @@ struct MessageNavBar: View {
     //MARK: - Body
     var body: some View {
         HStack(spacing: 16) {
-            
             // User image
             WebImage(url: URL(string: mmvm.chatUser?.profileImageUrl ?? "person.fill"))
                 .resizable()
@@ -81,4 +80,5 @@ struct MessageNavBar: View {
 //MARK: - Preview
 #Preview {
     MessageNavBar()
+        .environmentObject(MainMessagesViewModel())
 }

@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseStorage
 
-class FirebaseManager: NSObject {
+class FirebaseManager: NSObject, ObservableObject {
     
     let auth: Auth
     let storage: Storage

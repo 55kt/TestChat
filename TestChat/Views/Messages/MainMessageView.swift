@@ -9,13 +9,13 @@ import SwiftUI
 
 struct MainMessageView: View {
     
-    
     //MARK: - Body
     var body: some View {
         NavigationView {
             VStack {
                 // Nav Bar
                 MessageNavBar()
+                    .environmentObject(MainMessagesViewModel())
                 
                 // Main View Content
                 ScrollView {
