@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct ChatUser {
+struct ChatUser: Identifiable, Codable {
+    
+    var id: String { uid }
+    
     let uid, email, nickname, profileImageUrl: String
     
     init (data: [String: Any]) {

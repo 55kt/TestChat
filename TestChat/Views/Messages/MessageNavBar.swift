@@ -57,7 +57,7 @@ struct MessageNavBar: View {
         }
         .padding()
         
-        // Log out banner functionality
+        // Log out banner
         .actionSheet(isPresented: $shouldShowLogOutOptions) {
             .init(title: Text("Settings"), message:
                     Text("What do you want to do ?"), buttons: [

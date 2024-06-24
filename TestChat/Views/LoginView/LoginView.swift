@@ -12,9 +12,10 @@ struct LoginView: View {
     @State private var nickname = ""
     @State private var password = ""
     
-    @State private var shouldShowImagePicker = false
     @State var loginStatusMessage = ""
     @State var image: UIImage?
+    
+    @State private var shouldShowImagePicker = false
     
     //MARK: - Body
     var body: some View {
