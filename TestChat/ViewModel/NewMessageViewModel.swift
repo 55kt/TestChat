@@ -42,5 +42,5 @@ class NewMessageViewModel: ObservableObject {
 
 //MARK: - Preview
 #Preview {
-    NewMessageView()
+    NewMessageView(didSelectedNewUser: { user in print(user.email) })
 }

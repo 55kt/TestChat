@@ -28,6 +28,8 @@ struct LoginView: View {
                         Text("Create Account").tag(false)
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                                    
                     
                     // Icon Add Button Area
                     if !isLoginMode {
@@ -43,10 +45,9 @@ struct LoginView: View {
                                         .scaledToFill()
                                         .cornerRadius(64)
                                 } else {
-                                    Image(systemName: "person.fill")
+                                    Image(systemName: "person.crop.circle.badge.plus")
+                                        .font(.system(size: 100))
                                         .foregroundStyle(.gray)
-                                        .font(.system(size: 64))
-                                        .padding()
                                 }
                             }
                             .overlay(RoundedRectangle(cornerRadius: 64)
@@ -66,9 +67,11 @@ struct LoginView: View {
                             TextField("Nickname", text: $nickname)
                         }
                     }
+                    
                     .padding(12)
                     .background(Color.white)
                     .cornerRadius(10)
+                    
                     
                     // Auth Button
                     CustomButton(buttonTitle: isLoginMode ? "Log In" : "Create Account") {

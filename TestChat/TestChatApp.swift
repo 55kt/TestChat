@@ -11,7 +11,11 @@ import SwiftUI
 struct TestChatApp: App {
     var body: some Scene {
         WindowGroup {
-            ChatView()
+            MainMessageView()
         }
     }
 }
+
+//#Preview {
+//    MainMessageView()
+//}

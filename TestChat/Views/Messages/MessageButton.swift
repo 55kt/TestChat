@@ -9,11 +9,12 @@ import SwiftUI
 
 struct MessageButton: View {
     
-    @State var shouldShowNewMessageScreen = false
+    @State var newMessageScreen = false
+    @State var chatUser: ChatUser?
     
     var body: some View {
         Button{
-            shouldShowNewMessageScreen.toggle()
+            newMessageScreen.toggle()
         } label: {
             HStack {
                 Spacer()
@@ -28,9 +29,11 @@ struct MessageButton: View {
             .padding(.horizontal)
             .shadow(radius: 15)
         }
-        .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
-            NewMessageView()
-        }
+        .fullScreenCover(isPresented: $newMessageScreen, content: {
+            NewMessageView { user in
+                self.chatUser = user
+            }
+        })
     }
 }
 
