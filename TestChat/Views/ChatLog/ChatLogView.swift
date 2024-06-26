@@ -25,11 +25,11 @@ struct ChatLogView: View {
             
             // Central message arrea
             ScrollView {
-                ForEach(0..<10) { num in
+                ForEach(vm.chatMessages) {message in
                     HStack {
                         Spacer()
                         HStack {
-                            Text("Fake Message for now ! Hello World")
+                            Text(message.text)
                                 .foregroundStyle(.white)
                         }
                         .padding()
