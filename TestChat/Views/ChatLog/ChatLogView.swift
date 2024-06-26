@@ -11,20 +11,59 @@ struct ChatLogView: View {
     
     //MARK: - Properties
     let chatUser: ChatUser?
+    @State var chatMessage = ""
     
     //MARK: - Body
     var body: some View {
-        ScrollView {
-            ForEach(0..<10) { num in
-                HStack {
-                    Text("Fake Message for now ! Hello World")
+        VStack {
+            
+            // Central message arrea
+            ScrollView {
+                ForEach(0..<10) { num in
+                    HStack {
+                        Spacer()
+                        HStack {
+                            Text("Fake Message for now ! Hello World")
+                                .foregroundStyle(.white)
+                        }
+                        .padding()
+                        .background(.blue)
+                        .clipShape(.rect(cornerRadius: 7))
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                    
+                }
+                HStack{ Spacer() }
+            }
+            .background(Color(.init(white: 0.90, alpha: 1)))
+            
+            // Lower message send nav bar
+            HStack(spacing: 16) {
+                Image(systemName: "photo.on.rectangle")
+                    .font(.system(size: 24))
+                    .foregroundStyle(Color(.darkGray))
+//                TextEditor(text: $chatMessage)
+                TextField("Description", text: $chatMessage)
+                Button {
+                    // action
+                } label: {
+                    Text("Send")
                         .foregroundStyle(.white)
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 8)
                 .background(.blue)
                 .clipShape(.rect(cornerRadius: 7))
             }
-        }.navigationTitle(chatUser?.nickname ?? "No Nickname")
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            
+            
+        }
+        
+        // Navigation Bar
+        .navigationTitle(chatUser?.nickname ?? "No Nickname")
             .navigationBarTitleDisplayMode(.inline)
     }
 }
