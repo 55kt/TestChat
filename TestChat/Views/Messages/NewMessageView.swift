@@ -29,7 +29,7 @@ struct NewMessageView: View {
                         HStack {
                             VStack {
                                 NavigationLink {
-                                    ChatLogView(chatUser: ChatUser(data: ["nickname": user.nickname]))
+                                    ChatLogView(chatUser: ChatUser(data: ["nickname": user.nickname, "uid": user.uid]))
                                 } label: {
                                     HStack(spacing: 16) {
                                         // User image

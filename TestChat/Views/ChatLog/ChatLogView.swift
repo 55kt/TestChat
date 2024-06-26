@@ -10,8 +10,14 @@ import SwiftUI
 struct ChatLogView: View {
     
     //MARK: - Properties
+    @ObservedObject var vm: ChatLogViewModel
     let chatUser: ChatUser?
-    @State var chatMessage = ""
+    
+    //MARK: - Initializer
+    init(chatUser: ChatUser?) {
+        self.chatUser = chatUser
+        self.vm = .init(chatUser: chatUser)
+    }
     
     //MARK: - Body
     var body: some View {
@@ -44,9 +50,10 @@ struct ChatLogView: View {
                     .font(.system(size: 24))
                     .foregroundStyle(Color(.darkGray))
 //                TextEditor(text: $chatMessage)
-                TextField("Description", text: $chatMessage)
+                TextField("Description", text: $vm.chatText)
+                    .opacity(vm.chatText.isEmpty ? 0.5 : 1)
                 Button {
-                    // action
+                    vm.handleSend()
                 } label: {
                     Text("Send")
                         .foregroundStyle(.white)
