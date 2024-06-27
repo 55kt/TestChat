@@ -9,88 +9,112 @@ import SwiftUI
 
 struct ChatLogView: View {
     
-    //MARK: - Properties
-    @ObservedObject var vm: ChatLogViewModel
     let chatUser: ChatUser?
     
-    //MARK: - Initializer
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
         self.vm = .init(chatUser: chatUser)
     }
     
-    //MARK: - Body
+    @ObservedObject var vm: ChatLogViewModel
+    
     var body: some View {
+        ZStack {
+            messagesView
+            Text(vm.errorMessage)
+        }
+        .navigationTitle(chatUser?.nickname ?? "")
+            .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var messagesView: some View {
         VStack {
-            
-            // Central message arrea
-            ScrollView {
-                ForEach(vm.chatMessages) {message in
-                    VStack {
-                        if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
-                            HStack {
-                                Spacer()
+                ScrollView {
+                    ForEach(vm.chatMessages) { message in
+                        VStack {
+                            if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
                                 HStack {
-                                    Text(message.text)
-                                        .foregroundStyle(.white)
+                                    Spacer()
+                                    HStack {
+                                        Text(message.text)
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
                                 }
-                                .padding()
-                                .background(.blue)
-                                .clipShape(.rect(cornerRadius: 7))
-                            }
-                        } else {
-                            HStack {
+                            } else {
                                 HStack {
-                                    Text(message.text)
-                                        .foregroundStyle(.white)
+                                    HStack {
+                                        Text(message.text)
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding()
+                                    .background(Color.gray)
+                                    .cornerRadius(8)
+                                    Spacer()
                                 }
-                                .padding()
-                                .background(Color(.lightGray))
-                                .clipShape(.rect(cornerRadius: 7))
-                                Spacer()
                             }
                         }
+                        .padding(.horizontal)
+                        .padding(.top, 8)
+                        
                     }
-                    .padding(.horizontal)
-                    .padding(.top, 8)
+                    
+                    HStack{ Spacer() }
                 }
-                HStack{ Spacer() }
-            }
-            .background(Color(.init(white: 0.90, alpha: 1)))
-            
-            
-            
-            // Bottom message send nav bar
-            HStack(spacing: 16) {
-                Image(systemName: "photo.on.rectangle")
-                    .font(.system(size: 24))
-                    .foregroundStyle(Color(.darkGray))
-            //                TextEditor(text: $chatMessage)
-                TextField("Description", text: $vm.chatText)
+                .background(Color(.init(white: 0.95, alpha: 1)))
+                .safeAreaInset(edge: .bottom) {
+                    chatBottomBar
+                        .background(Color(.systemBackground).ignoresSafeArea())
+                }
+        }
+    }
+    
+    private var chatBottomBar: some View {
+        HStack(spacing: 16) {
+            Image(systemName: "photo.on.rectangle")
+                .font(.system(size: 24))
+                .foregroundColor(Color(.darkGray))
+            ZStack {
+                DescriptionPlaceholder()
+                TextEditor(text: $vm.chatText)
                     .opacity(vm.chatText.isEmpty ? 0.5 : 1)
-                Button {
-                    vm.handleSend()
-                } label: {
-                    Text("Send")
-                        .foregroundStyle(.white)
-                }
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .background(.blue)
-                .clipShape(.rect(cornerRadius: 7))
+            }
+            .frame(height: 40)
+            
+            Button {
+                vm.handleSend()
+            } label: {
+                Text("Send")
+                    .foregroundColor(.white)
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
+            .background(Color.blue)
+            .cornerRadius(4)
         }
-        // Navigation Bar
-        .navigationTitle(chatUser?.nickname ?? "No Nickname")
-            .navigationBarTitleDisplayMode(.inline)
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+    }
+    
+    private struct DescriptionPlaceholder: View {
+        var body: some View {
+            HStack {
+                Text("Description")
+                    .foregroundColor(Color(.gray))
+                    .font(.system(size: 17))
+                    .padding(.leading, 5)
+                    .padding(.top, -4)
+                Spacer()
+            }
+        }
     }
 }
 
 //MARK: - Preview
 #Preview {
-    NavigationStack { // This Stack needed for navigationTitle preview 
+    NavigationStack { // This Stack needed for navigationTitle preview
         ChatLogView(chatUser: ChatUser(data: ["uid": "5uyUUU7AOIT52pPboIXlDLSyYRV2", "nickname": "Dyadya Dima"]))
     }
 }
