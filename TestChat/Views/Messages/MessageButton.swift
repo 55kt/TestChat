@@ -38,5 +38,5 @@ struct MessageButton: View {
 }
 
 #Preview {
-    MessageButton()
+    MainMessageView()
 }

@@ -9,65 +9,80 @@ import SwiftUI
 
 struct ChatLogView: View {
     
+    //MARK: - Properties
+    @ObservedObject var vm: ChatLogViewModel
     let chatUser: ChatUser?
+    static let emptyScrollToString = "Empty"
     
+    //MARK: - Initializer
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
         self.vm = .init(chatUser: chatUser)
     }
     
-    @ObservedObject var vm: ChatLogViewModel
     
+    //MARK: - Body
     var body: some View {
         ZStack {
             messagesView
             Text(vm.errorMessage)
         }
         .navigationTitle(chatUser?.nickname ?? "")
-            .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
+    //MARK: - Methods
     private var messagesView: some View {
         VStack {
-                ScrollView {
-                    ForEach(vm.chatMessages) { message in
-                        VStack {
-                            if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
-                                HStack {
-                                    Spacer()
+            ScrollView {
+                ScrollViewReader { ScrollViewProxy in
+                    VStack {
+                        ForEach(vm.chatMessages) { message in
+                            VStack {
+                                if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
                                     HStack {
-                                        Text(message.text)
-                                            .foregroundColor(.white)
+                                        Spacer()
+                                        HStack {
+                                            Text(message.text)
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding()
+                                        .background(Color.blue)
+                                        .cornerRadius(8)
                                     }
-                                    .padding()
-                                    .background(Color.blue)
-                                    .cornerRadius(8)
-                                }
-                            } else {
-                                HStack {
+                                } else {
                                     HStack {
-                                        Text(message.text)
-                                            .foregroundColor(.white)
+                                        HStack {
+                                            Text(message.text)
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding()
+                                        .background(Color.gray)
+                                        .cornerRadius(8)
+                                        Spacer()
                                     }
-                                    .padding()
-                                    .background(Color.gray)
-                                    .cornerRadius(8)
-                                    Spacer()
                                 }
                             }
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                            
                         }
-                        .padding(.horizontal)
-                        .padding(.top, 8)
                         
+                        HStack{ Spacer() }
+                            .id(Self.emptyScrollToString)
                     }
-                    
-                    HStack{ Spacer() }
+                    .onReceive(vm.$count) { _ in
+                        withAnimation(.easeOut(duration: 0.5)) {
+                            ScrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
+                        }
+                    }
                 }
-                .background(Color(.init(white: 0.95, alpha: 1)))
-                .safeAreaInset(edge: .bottom) {
-                    chatBottomBar
-                        .background(Color(.systemBackground).ignoresSafeArea())
-                }
+            }
+            .background(Color(.init(white: 0.95, alpha: 1)))
+            .safeAreaInset(edge: .bottom) {
+                chatBottomBar
+                    .background(Color(.systemBackground).ignoresSafeArea())
+            }
         }
     }
     
