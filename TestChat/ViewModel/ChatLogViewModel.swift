@@ -55,6 +55,7 @@ class ChatLogViewModel: ObservableObject {
             .collection("messages")
             .document(fromId)
             .collection(toId)
+            .order(by: "timestamp")
             .addSnapshotListener { QuerySnapshot, error in
                 if let error = error {
                     self.errorMessage = "Failed to listen for messages: \(error)"
@@ -62,10 +63,11 @@ class ChatLogViewModel: ObservableObject {
                     return
                 }
                 
-                QuerySnapshot?.documents.forEach({ QueryDocumentSnapshot in
-                    let data = QueryDocumentSnapshot.data()
-                    let docId = QueryDocumentSnapshot.documentID
-                    self.chatMessages.append(.init(documentId: docId, data: data))
+                QuerySnapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        let data = change.document.data()
+                        self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+                    }
                 })
             }
     }

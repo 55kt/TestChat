@@ -26,30 +26,46 @@ struct ChatLogView: View {
             // Central message arrea
             ScrollView {
                 ForEach(vm.chatMessages) {message in
-                    HStack {
-                        Spacer()
-                        HStack {
-                            Text(message.text)
-                                .foregroundStyle(.white)
+                    VStack {
+                        if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
+                            HStack {
+                                Spacer()
+                                HStack {
+                                    Text(message.text)
+                                        .foregroundStyle(.white)
+                                }
+                                .padding()
+                                .background(.blue)
+                                .clipShape(.rect(cornerRadius: 7))
+                            }
+                        } else {
+                            HStack {
+                                HStack {
+                                    Text(message.text)
+                                        .foregroundStyle(.white)
+                                }
+                                .padding()
+                                .background(Color(.lightGray))
+                                .clipShape(.rect(cornerRadius: 7))
+                                Spacer()
+                            }
                         }
-                        .padding()
-                        .background(.blue)
-                        .clipShape(.rect(cornerRadius: 7))
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
-                    
                 }
                 HStack{ Spacer() }
             }
             .background(Color(.init(white: 0.90, alpha: 1)))
             
-            // Lower message send nav bar
+            
+            
+            // Bottom message send nav bar
             HStack(spacing: 16) {
                 Image(systemName: "photo.on.rectangle")
                     .font(.system(size: 24))
                     .foregroundStyle(Color(.darkGray))
-//                TextEditor(text: $chatMessage)
+            //                TextEditor(text: $chatMessage)
                 TextField("Description", text: $vm.chatText)
                     .opacity(vm.chatText.isEmpty ? 0.5 : 1)
                 Button {
@@ -65,10 +81,7 @@ struct ChatLogView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
-            
-            
         }
-        
         // Navigation Bar
         .navigationTitle(chatUser?.nickname ?? "No Nickname")
             .navigationBarTitleDisplayMode(.inline)
